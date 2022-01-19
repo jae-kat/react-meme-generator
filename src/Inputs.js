@@ -1,4 +1,14 @@
+import styled from '@emotion/styled';
 import { useState } from 'react';
+
+const Fragment = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+`;
+const Label = styled.label`
+  margin: 2%;
+`;
 
 export default function Inputs({ memes }) {
   const [topText, setTopText] = useState('');
@@ -8,7 +18,7 @@ export default function Inputs({ memes }) {
   const userTemplate = memes.filter((url) => url.includes({ template }));
 
   return (
-    <fragment>
+    <Fragment>
       <label>
         Meme template
         <input
@@ -17,13 +27,13 @@ export default function Inputs({ memes }) {
         />
       </label>
       <img src={userTemplate} alt="Meme template chosen by the user" />
-      <label>
+      <Label>
         Top text
         <input
           onChange={(event) => setTopText(event.target.value)}
           value={topText}
         />
-      </label>
+      </Label>
       <label>
         Bottom text
         <input
@@ -31,6 +41,6 @@ export default function Inputs({ memes }) {
           value={bottomText}
         />
       </label>
-    </fragment>
+    </Fragment>
   );
 }
