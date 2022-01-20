@@ -14,8 +14,25 @@ export default function Inputs({ memes }) {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [template, setTemplate] = useState('');
+  const [customMeme, setCustomMeme] = useState('');
 
-  const userTemplate = memes.filter((url) => url.includes({ template }));
+  // function handleChange() {
+  //   const requestOptions = {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({
+  //       background: 'https://api.memegen.link/images/doge.png',
+  //       style: 'string',
+  //       text_lines: ['hello', 'world'],
+  //       extension: 'string',
+  //       redirect: true,
+  //     }),
+  //   };
+  //   fetch('https://api.memegen.link/images/custom', requestOptions)
+  //     .then((response) => response.json())
+  //     .then((data) => setCustomMeme(data))
+  //     .catch((err) => console.log(err));
+  // }
 
   return (
     <Fragment>
@@ -26,7 +43,11 @@ export default function Inputs({ memes }) {
           value={template}
         />
       </label>
-      <img src={userTemplate} alt="Meme template chosen by the user" />
+      <img
+        src={memes.filter((url) => url.includes({ template }))}
+        alt="chosen meme template"
+        height="100px"
+      />
       <Label>
         Top text
         <input
@@ -41,6 +62,11 @@ export default function Inputs({ memes }) {
           value={bottomText}
         />
       </label>
+      {/* <div>
+        <img src={customMeme} alt="your custom meme" />
+        I'll show the custom meme here??! {console.log(customMeme)}
+      </div>
+      <button onClick={handleChange}>Click for a meme</button> */}
     </Fragment>
   );
 }
