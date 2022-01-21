@@ -33,6 +33,7 @@ export default function TextInput({
         Top text{' '}
         <input
           onChange={(event) => setTopText(event.target.value)}
+          onKeyPress={handleText}
           value={topText}
         />
       </label>
@@ -40,6 +41,7 @@ export default function TextInput({
         Bottom text{' '}
         <input
           onChange={(event) => setBottomText(event.target.value)}
+          onKeyPress={handleText}
           value={bottomText}
         />
       </label>
