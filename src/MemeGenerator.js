@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
-import { useState } from 'react';
+import { saveAs } from 'file-saver';
+import { useEffect, useState } from 'react';
 
 const Div = styled.div`
   width: 80%;
@@ -7,7 +8,6 @@ const Div = styled.div`
   overflow: scroll;
   display: flex;
   flex-flow: nowrap;
-  background-color: oldlace;
 `;
 
 export default function MemeGenerator() {
@@ -16,18 +16,38 @@ export default function MemeGenerator() {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [chosenMeme, setChosenMeme] = useState('');
-  const [finishedMeme, setFinishedMeme] = useState('');
+  const [customMeme, setCustomMeme] = useState('');
 
-  async function getMemes() {
-    const fetchResponse = await fetch('https://api.memegen.link/templates');
-    const data = await fetchResponse.json();
-    setMemeData(data);
+  useEffect(() => {
+    async function getMemes() {
+      const fetchResponse = await fetch('https://api.memegen.link/templates');
+      const data = await fetchResponse.json();
+      setMemeData(data);
+    }
+    void getMemes();
+  }, []);
+
+  function handleText() {
+    setCustomMeme(
+      () =>
+        chosenMeme.slice(0, -4) +
+        (topText ? '/' + topText : '/_') +
+        ('/' + bottomText) +
+        '.png',
+    );
   }
 
-  function handleChange() {
-    setFinishedMeme(
-      chosenMeme.slice(0, -4) + '/' + topText + '/' + bottomText + '.png',
-    );
+  function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      setCustomMeme(
+        () => 'https://api.memegen.link/images/' + template + '.png',
+      );
+      setChosenMeme('https://api.memegen.link/images/' + template + '.png');
+    }
+  }
+
+  function downloadImage() {
+    saveAs(chosenMeme, 'CustomMeme.jpg'); // Put your image url here.
   }
 
   const memeUrls = Object.values(memeData).map((item) => item.blank);
@@ -36,14 +56,24 @@ export default function MemeGenerator() {
 
   return (
     <>
-      <button onClick={getMemes}>Show templates</button>
       <Div>
         {memeUrls
           .filter((item, index) => index < 90)
           .map((url) => {
             return (
-              <button key={url} onClick={() => setChosenMeme(url)}>
-                <img src={url} alt="a meme" height="100px" />{' '}
+              <button
+                key={url}
+                onClick={() => {
+                  setCustomMeme(url);
+                  setChosenMeme(url);
+                }}
+              >
+                <img
+                  src={url}
+                  alt="a meme"
+                  height="100px"
+                  data-test-id="meme-image"
+                />{' '}
               </button>
             );
           })}
@@ -53,19 +83,28 @@ export default function MemeGenerator() {
         <input
           onChange={(event) => setTemplate(event.target.value)}
           value={template}
+          onKeyPress={handleKeyPress}
         />
       </label>
       <button
-        onClick={() =>
-          setChosenMeme(
+        onClick={() => {
+          setCustomMeme(
             () => 'https://api.memegen.link/images/' + template + '.png',
-          )
-        }
+          );
+          setChosenMeme('https://api.memegen.link/images/' + template + '.png');
+        }}
       >
         Search for meme
       </button>
 
-      <img src={chosenMeme} alt="random meme" height="200px" />
+      {(customMeme || chosenMeme) && (
+        <img
+          src={customMeme ? customMeme : chosenMeme}
+          alt="random meme"
+          height="200px"
+          data-test-id="meme-image"
+        />
+      )}
       <label>
         Top text{' '}
         <input
@@ -80,16 +119,9 @@ export default function MemeGenerator() {
           value={bottomText}
         />
       </label>
-      <button onClick={handleChange}>Add my text</button>
-      <img src={finishedMeme} alt="your meme" />
-      {/* <button>
-        <a
-          href="https://api.memegen.link/images/buzz/memes/memes_everywhere.gif"
-          download
-        >
-          Download
-        </a>
-      </button> */}
+      <button onClick={handleText}>Add my text</button>
+
+      <button onClick={downloadImage}>Download</button>
     </>
   );
 }
