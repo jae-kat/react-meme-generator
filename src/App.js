@@ -29,6 +29,7 @@ function App() {
         setMemeImage={setMemeImage}
         setCustomMeme={setCustomMeme}
       />
+
       <MemeGenerator
         memeData={memeData}
         setMemeData={setMemeData}
@@ -46,6 +47,7 @@ function App() {
         setBottomText={setBottomText}
         setCustomMeme={setCustomMeme}
       />
+
       <Download customMeme={customMeme} />
     </Container>
   );

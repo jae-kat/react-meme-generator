@@ -1,3 +1,14 @@
+import styled from '@emotion/styled';
+
+const Fragment = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 10px;
+  background-color: lightgray;
+  margin: 10px;
+`;
+
 export default function TextInput({
   memeImage,
   topText,
@@ -17,7 +28,7 @@ export default function TextInput({
   }
 
   return (
-    <>
+    <Fragment>
       <label>
         Top text{' '}
         <input
@@ -33,6 +44,6 @@ export default function TextInput({
         />
       </label>
       <button onClick={handleText}>Add my text</button>
-    </>
+    </Fragment>
   );
 }

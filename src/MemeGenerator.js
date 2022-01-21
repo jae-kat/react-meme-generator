@@ -8,6 +8,11 @@ const Div = styled.div`
   display: flex;
   flex-flow: nowrap;
 `;
+const Img = styled.img`
+  padding: 50px;
+  background-color: gray;
+  margin: 10px;
+`;
 
 export default function MemeGenerator({
   memeData,
@@ -54,7 +59,7 @@ export default function MemeGenerator({
       </Div>
 
       {(customMeme || memeImage) && (
-        <img
+        <Img
           src={customMeme ? customMeme : memeImage}
           alt="random meme"
           height="200px"
