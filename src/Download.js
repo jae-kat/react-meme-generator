@@ -1,8 +1,8 @@
 import { saveAs } from 'file-saver';
 
-export default function Download({ customMeme }) {
+export default function Download({ customMeme, memeImage }) {
   function downloadImage() {
-    saveAs(customMeme, 'CustomMeme.jpg'); // Put your image url here.
+    saveAs(customMeme ? customMeme : memeImage, 'CustomMeme.jpg');
   }
   return (
     <div>

@@ -1,8 +1,9 @@
 import './App.css';
 import styled from '@emotion/styled';
 import { useState } from 'react';
+import AvailableMemes from './AvailableMemes';
+import DisplayCustomMeme from './DisplayCustomMeme';
 import Download from './Download';
-import MemeGenerator from './MemeGenerator';
 import Template from './Template';
 import TextInput from './TextInput';
 
@@ -30,7 +31,7 @@ function App() {
         setCustomMeme={setCustomMeme}
       />
 
-      <MemeGenerator
+      <AvailableMemes
         memeData={memeData}
         setMemeData={setMemeData}
         setMemeImage={setMemeImage}
@@ -38,6 +39,8 @@ function App() {
         setCustomMeme={setCustomMeme}
         memeImage={memeImage}
       />
+
+      <DisplayCustomMeme customMeme={customMeme} memeImage={memeImage} />
 
       <TextInput
         memeImage={memeImage}
@@ -48,7 +51,7 @@ function App() {
         setCustomMeme={setCustomMeme}
       />
 
-      <Download customMeme={customMeme} />
+      <Download customMeme={customMeme} memeImage={memeImage} />
     </Container>
   );
 }
