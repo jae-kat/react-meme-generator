@@ -15,6 +15,7 @@ export default function TextInput({
   bottomText,
   setBottomText,
 }) {
+  // if you are in the input field for the top text and you hit enter, the focus jumps to the bottom input box
   function handleTopText(event) {
     if (event.key === 'Enter') {
       document.querySelector('.bottom-text').focus();
@@ -22,6 +23,7 @@ export default function TextInput({
   }
 
   return (
+    // input fields for top and bottom texts. whenever the user types, the values are updated
     <Fragment>
       <label>
         Top text{' '}

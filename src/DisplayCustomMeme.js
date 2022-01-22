@@ -12,6 +12,7 @@ const Img = styled.img`
   height: 40vh;
 `;
 
+// create and <img/> that will show our customized meme
 export default function DisplayCustomMeme({ customMeme }) {
   return (
     <Div>

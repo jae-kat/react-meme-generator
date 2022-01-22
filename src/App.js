@@ -19,6 +19,7 @@ function App() {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [id, setId] = useState(() => {
+    // show a random meme template on initial render
     const firstMemeImages = [
       'biw',
       'cryingfloor',
@@ -34,6 +35,8 @@ function App() {
     return firstMemeImages[Math.floor(Math.random() * 10)];
   });
 
+  // this defines the URL for the image the meme generator displays
+  // either a customized meme, or an empty template picture before words are added
   const customMeme =
     'https://api.memegen.link/images/' +
     id +

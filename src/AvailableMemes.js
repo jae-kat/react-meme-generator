@@ -16,6 +16,7 @@ export default function AvailableMemes({
   setId,
   setTemplate,
 }) {
+  // fetch the data from the API
   useEffect(() => {
     async function getMemes() {
       const fetchResponse = await fetch('https://api.memegen.link/templates');
@@ -25,6 +26,7 @@ export default function AvailableMemes({
     void getMemes();
   }, [setMemeData]);
 
+  // store the relevant data in an array (the url to the memes, as well as their names and ids
   const memeObject = Object.values(memeData).map((item) => ({
     url: item.blank,
     name: item.name,
@@ -32,6 +34,7 @@ export default function AvailableMemes({
   }));
 
   return (
+    // create an <img /> for each meme. clicking on it sets the id (which we need to create the customMeme)
     <Div>
       {memeObject.map((meme) => {
         return (
@@ -39,7 +42,6 @@ export default function AvailableMemes({
             key={meme.name}
             onClick={() => {
               setId(meme.id);
-              setTemplate('');
             }}
           >
             <Img
