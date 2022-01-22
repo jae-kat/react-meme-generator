@@ -53,7 +53,6 @@ function App() {
         memeData={memeData}
         setMemeData={setMemeData}
         setId={setId}
-        setTemplate={setTemplate}
       />
 
       <DisplayCustomMeme customMeme={customMeme} />

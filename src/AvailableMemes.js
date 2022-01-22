@@ -10,12 +10,7 @@ const Div = styled.div`
 `;
 const Img = styled.img``;
 
-export default function AvailableMemes({
-  memeData,
-  setMemeData,
-  setId,
-  setTemplate,
-}) {
+export default function AvailableMemes({ memeData, setMemeData, setId }) {
   // fetch the data from the API
   useEffect(() => {
     async function getMemes() {
