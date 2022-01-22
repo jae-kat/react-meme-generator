@@ -17,7 +17,7 @@ export default function TextInput({
 }) {
   function handleTopText(event) {
     if (event.key === 'Enter') {
-      document.getElementById('bottom-text').focus();
+      document.querySelector('.bottom-text').focus();
     }
   }
 
@@ -36,7 +36,7 @@ export default function TextInput({
         <input
           onChange={(event) => setBottomText(event.target.value)}
           value={bottomText}
-          id="bottom-text"
+          className="bottom-text"
         />
       </label>
     </Fragment>

@@ -18,13 +18,27 @@ function App() {
   const [template, setTemplate] = useState('');
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
-  const [id, setId] = useState('_');
+  const [id, setId] = useState(() => {
+    const firstMemeImages = [
+      'biw',
+      'cryingfloor',
+      'doge',
+      'buzz',
+      'kombucha',
+      'boat',
+      'fine',
+      'snek',
+      'wonka',
+      'persian',
+    ];
+    return firstMemeImages[Math.floor(Math.random() * 10)];
+  });
 
   const customMeme =
     'https://api.memegen.link/images/' +
-    (template ? template : id) +
-    (topText ? '/' + topText : '') +
-    (bottomText ? '/' + bottomText : '') +
+    id +
+    (topText ? '/' + topText : '/_') +
+    (bottomText ? '/' + bottomText : '/_') +
     '.png';
 
   return (

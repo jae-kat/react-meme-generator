@@ -8,6 +8,7 @@ const Div = styled.div`
   display: flex;
   flex-flow: nowrap;
 `;
+const Img = styled.img``;
 
 export default function AvailableMemes({
   memeData,
@@ -41,7 +42,7 @@ export default function AvailableMemes({
               setTemplate('');
             }}
           >
-            <img
+            <Img
               src={meme.url}
               alt={`meme template '${meme.name}'`}
               height="100px"

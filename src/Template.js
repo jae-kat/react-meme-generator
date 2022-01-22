@@ -1,7 +1,7 @@
 export default function Template({ template, setTemplate, setId }) {
   function handleKeyPress(event) {
     if (event.key === 'Enter') {
-      setId('');
+      setId(template);
     }
   }
 
@@ -11,13 +11,12 @@ export default function Template({ template, setTemplate, setId }) {
         Meme template{' '}
         <input
           onChange={(event) => setTemplate(event.target.value)}
-          value={template}
           onKeyPress={handleKeyPress}
         />
       </label>
       <button
         onClick={() => {
-          setId('');
+          setId(template);
         }}
       >
         Search for meme
