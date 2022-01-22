@@ -1,15 +1,7 @@
-export default function Template({
-  template,
-  setTemplate,
-  setMemeImage,
-  setCustomMeme,
-}) {
+export default function Template({ template, setTemplate, setId }) {
   function handleKeyPress(event) {
     if (event.key === 'Enter') {
-      setMemeImage(
-        () => 'https://api.memegen.link/images/' + template + '.png',
-      );
-      setCustomMeme(() => '');
+      setId('');
     }
   }
 
@@ -25,9 +17,7 @@ export default function Template({
       </label>
       <button
         onClick={() => {
-          setMemeImage(
-            () => 'https://api.memegen.link/images/' + template + '.png',
-          );
+          setId('');
         }}
       >
         Search for meme

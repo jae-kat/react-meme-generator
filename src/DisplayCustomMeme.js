@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 const Div = styled.div`
   height: 50vh;
-  width: 40vw;
+  width: auto;
   border: 4px solid black;
   display: flex;
   justify-content: center;
@@ -12,15 +12,11 @@ const Img = styled.img`
   height: 40vh;
 `;
 
-export default function DisplayCustomMeme({ customMeme, memeImage }) {
+export default function DisplayCustomMeme({ customMeme }) {
   return (
     <Div>
-      {(customMeme || memeImage) && (
-        <Img
-          src={customMeme ? customMeme : memeImage}
-          alt="random meme"
-          data-test-id="meme-image"
-        />
+      {customMeme && (
+        <Img src={customMeme} alt="random meme" data-test-id="meme-image" />
       )}
     </Div>
   );

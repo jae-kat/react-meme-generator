@@ -18,40 +18,37 @@ function App() {
   const [template, setTemplate] = useState('');
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
-  const [memeImage, setMemeImage] = useState('');
-  const [customMeme, setCustomMeme] = useState('');
+  const [id, setId] = useState('_');
+
+  const customMeme =
+    'https://api.memegen.link/images/' +
+    (template ? template : id) +
+    (topText ? '/' + topText : '') +
+    (bottomText ? '/' + bottomText : '') +
+    '.png';
 
   return (
     <Container>
       <h1>meme generator</h1>
-      <Template
-        template={template}
-        setTemplate={setTemplate}
-        setMemeImage={setMemeImage}
-        setCustomMeme={setCustomMeme}
-      />
+      <Template template={template} setTemplate={setTemplate} setId={setId} />
 
       <AvailableMemes
         memeData={memeData}
         setMemeData={setMemeData}
-        setMemeImage={setMemeImage}
-        customMeme={customMeme}
-        setCustomMeme={setCustomMeme}
-        memeImage={memeImage}
+        setId={setId}
+        setTemplate={setTemplate}
       />
 
-      <DisplayCustomMeme customMeme={customMeme} memeImage={memeImage} />
+      <DisplayCustomMeme customMeme={customMeme} />
 
       <TextInput
-        memeImage={memeImage}
         topText={topText}
         setTopText={setTopText}
         bottomText={bottomText}
         setBottomText={setBottomText}
-        setCustomMeme={setCustomMeme}
       />
 
-      <Download customMeme={customMeme} memeImage={memeImage} />
+      <Download customMeme={customMeme} />
     </Container>
   );
 }

@@ -10,21 +10,15 @@ const Fragment = styled.div`
 `;
 
 export default function TextInput({
-  memeImage,
   topText,
   setTopText,
   bottomText,
   setBottomText,
-  setCustomMeme,
 }) {
-  function handleText() {
-    setCustomMeme(
-      () =>
-        memeImage.slice(0, -4) +
-        (topText ? '/' + topText : '/_') +
-        ('/' + bottomText) +
-        '.png',
-    );
+  function handleTopText(event) {
+    if (event.key === 'Enter') {
+      document.getElementById('bottom-text').focus();
+    }
   }
 
   return (
@@ -33,7 +27,7 @@ export default function TextInput({
         Top text{' '}
         <input
           onChange={(event) => setTopText(event.target.value)}
-          onKeyPress={handleText}
+          onKeyPress={handleTopText}
           value={topText}
         />
       </label>
@@ -41,11 +35,10 @@ export default function TextInput({
         Bottom text{' '}
         <input
           onChange={(event) => setBottomText(event.target.value)}
-          onKeyPress={handleText}
           value={bottomText}
+          id="bottom-text"
         />
       </label>
-      <button onClick={handleText}>Add my text</button>
     </Fragment>
   );
 }

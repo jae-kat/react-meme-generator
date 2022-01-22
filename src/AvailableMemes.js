@@ -12,9 +12,8 @@ const Div = styled.div`
 export default function AvailableMemes({
   memeData,
   setMemeData,
-  setMemeImage,
-
-  setCustomMeme,
+  setId,
+  setTemplate,
 }) {
   useEffect(() => {
     async function getMemes() {
@@ -25,27 +24,29 @@ export default function AvailableMemes({
     void getMemes();
   }, [setMemeData]);
 
-  const memeUrls = Object.values(memeData).map((item) => item.blank);
-
-  //
+  const memeObject = Object.values(memeData).map((item) => ({
+    url: item.blank,
+    name: item.name,
+    id: item.id,
+  }));
 
   return (
     <Div>
-      {memeUrls.map((url) => {
+      {memeObject.map((meme) => {
         return (
           <button
-            key={url}
+            key={meme.name}
             onClick={() => {
-              setMemeImage(url);
-              setCustomMeme('');
+              setId(meme.id);
+              setTemplate('');
             }}
           >
             <img
-              src={url}
-              alt="a meme"
+              src={meme.url}
+              alt={`meme template '${meme.name}'`}
               height="100px"
               data-test-id="meme-image"
-            />{' '}
+            />
           </button>
         );
       })}
