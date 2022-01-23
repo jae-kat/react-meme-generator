@@ -1,16 +1,24 @@
 import styled from '@emotion/styled';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+const Container = styled.div`
+  width: 80vw;
+  height: 100px;
+  display: flex;
+  margin: 2vh;
+`;
 
 const Div = styled.div`
-  width: 80%;
-  height: 100px;
-  overflow: scroll;
-  display: flex;
-  flex-flow: nowrap;
+  overflow: hidden;
+  width: 80vw;
+  align-items: space-evenly;
 `;
-const Img = styled.img``;
 
 export default function AvailableMemes({ memeData, setMemeData, setId }) {
+  // these are needed for the 'back' and 'next' buttons
+  const [indexHigh, setIndexHigh] = useState(6);
+  const [indexLow, setIndexLow] = useState(0);
+
   // fetch the data from the API
   useEffect(() => {
     async function getMemes() {
@@ -28,26 +36,51 @@ export default function AvailableMemes({ memeData, setMemeData, setId }) {
     id: item.id,
   }));
 
+  // narrow the array down, so only a small number of images are displayed on the page
+  const memeObjectImages = memeObject.filter(
+    (item, index) => index < indexHigh && index > indexLow,
+  );
+
   return (
     // create an <img /> for each meme. clicking on it sets the id (which we need to create the customMeme)
-    <Div>
-      {memeObject.map((meme) => {
+    <Container>
+      <button
+        onClick={() => {
+          setIndexHigh(indexHigh - 6);
+          setIndexLow(indexLow - 6);
+        }}
+      >
+        Back
+      </button>
+      {memeObjectImages.map((meme) => {
         return (
-          <button
+          <Div
             key={meme.name}
+            role="button"
+            tabIndex={0}
+            onKeyPress={() => {
+              setId(meme.id);
+            }}
             onClick={() => {
               setId(meme.id);
             }}
           >
-            <Img
+            <img
               src={meme.url}
               alt={`meme template '${meme.name}'`}
               height="100px"
-              data-test-id="meme-image"
             />
-          </button>
+          </Div>
         );
       })}
-    </Div>
+      <button
+        onClick={() => {
+          setIndexHigh(indexHigh + 6);
+          setIndexLow(indexLow + 6);
+        }}
+      >
+        Next
+      </button>
+    </Container>
   );
 }

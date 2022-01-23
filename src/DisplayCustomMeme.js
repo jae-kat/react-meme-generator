@@ -16,7 +16,7 @@ const Img = styled.img`
 export default function DisplayCustomMeme({ customMeme }) {
   return (
     <Div>
-      <Img src={customMeme} alt="random meme" data-test-id="meme-image" />)
+      <Img src={customMeme} alt="random meme" data-test-id="meme-image" />
     </Div>
   );
 }
