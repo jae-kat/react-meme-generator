@@ -33,8 +33,8 @@ function App() {
   const customMeme =
     'https://api.memegen.link/images/' +
     id +
-    (topText ? '/' + topText : '/_') +
-    (bottomText ? '/' + bottomText : '/_') +
+    (topText ? '/' + topText : '') +
+    (!bottomText ? '' : !topText ? '/_/' + bottomText : '/' + bottomText) +
     '.png';
 
   return (
