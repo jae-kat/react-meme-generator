@@ -11,6 +11,7 @@ const Div = styled.div`
   margin-left: 10%;
   background-color: #a382e5;
 `;
+
 const Img = styled.img`
   margin: 5vh;
   height: 40vh;

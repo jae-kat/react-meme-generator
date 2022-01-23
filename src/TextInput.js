@@ -19,7 +19,7 @@ export default function TextInput({
   bottomText,
   setBottomText,
 }) {
-  // if you are in the input field for the top text and you hit enter, the focus jumps to the bottom input box
+  // if you are in the input field for the top text and you hit enter, the focus jumps to the bottom input field
   function handleTopText(event) {
     if (event.key === 'Enter') {
       document.querySelector('.bottom-text').focus();

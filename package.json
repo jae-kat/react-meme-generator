@@ -49,7 +49,7 @@
     "@types/testing-library__user-event": "^4.2.0",
     "@typescript-eslint/eslint-plugin": "5.9.0",
     "@typescript-eslint/parser": "5.9.0",
-    "@upleveled/eslint-config-upleveled": "2.2.1",
+    "@upleveled/eslint-config-upleveled": "2.2.2",
     "@upleveled/eslint-plugin-upleveled": "2.0.1",
     "eslint": "8.6.0",
     "eslint-config-react-app": "7.0.0",

@@ -1,5 +1,4 @@
 import './App.css';
-import styled from '@emotion/styled';
 import { useState } from 'react';
 import AvailableMemes from './AvailableMemes';
 import DisplayCustomMeme from './DisplayCustomMeme';
@@ -13,7 +12,7 @@ function App() {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [id, setId] = useState(() => {
-    // show a random meme template on initial render
+    // show one of these meme templates on initial render
     const firstMemeImages = [
       'biw',
       'cryingfloor',
@@ -52,7 +51,7 @@ function App() {
       <div className="grid">
         <DisplayCustomMeme customMeme={customMeme} className="meme" />
 
-        <div className="unit">
+        <div className="flex">
           <TextInput
             className="input"
             topText={topText}
