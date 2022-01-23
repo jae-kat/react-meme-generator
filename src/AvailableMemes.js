@@ -3,15 +3,22 @@ import { useEffect, useState } from 'react';
 
 const Container = styled.div`
   width: 80vw;
-  height: 100px;
+  height: 130px;
   display: flex;
   margin: 2vh;
+  border: 4px solid black;
+  border-radius: 10px;
 `;
 
 const Div = styled.div`
   overflow: hidden;
   width: 80vw;
   align-items: space-evenly;
+`;
+
+const Button = styled.button`
+  background-color: black;
+  color: white;
 `;
 
 export default function AvailableMemes({ memeData, setMemeData, setId }) {
@@ -44,14 +51,15 @@ export default function AvailableMemes({ memeData, setMemeData, setId }) {
   return (
     // create an <img /> for each meme. clicking on it sets the id (which we need to create the customMeme)
     <Container>
-      <button
+      <Button
+        className="click"
         onClick={() => {
           setIndexHigh(indexHigh - 6);
           setIndexLow(indexLow - 6);
         }}
       >
         Back
-      </button>
+      </Button>
       {memeObjectImages.map((meme) => {
         return (
           <Div
@@ -68,19 +76,20 @@ export default function AvailableMemes({ memeData, setMemeData, setId }) {
             <img
               src={meme.url}
               alt={`meme template '${meme.name}'`}
-              height="100px"
+              height="130px"
             />
           </Div>
         );
       })}
-      <button
+      <Button
+        className="click"
         onClick={() => {
           setIndexHigh(indexHigh + 6);
           setIndexLow(indexLow + 6);
         }}
       >
         Next
-      </button>
+      </Button>
     </Container>
   );
 }

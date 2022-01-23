@@ -1,3 +1,30 @@
+.contentBox {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.unit {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+h1 {
+  text-transform: uppercase;
+  text-shadow: 4px 4px #f282d0;
+}
+
+p {
+  font-size: 10px;
+}
+
 .App {
   text-align: center;
 }

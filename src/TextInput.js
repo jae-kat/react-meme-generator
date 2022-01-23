@@ -5,8 +5,12 @@ const Fragment = styled.div`
   flex-flow: column;
   align-items: center;
   padding: 10px;
-  background-color: lightgray;
-  margin: 10px;
+  background-color: #84b1d8;
+  border: 4px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px;
+  margin: 30px;
+  width: 30vw;
 `;
 
 export default function TextInput({

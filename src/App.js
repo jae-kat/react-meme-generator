@@ -7,12 +7,6 @@ import Download from './Download';
 import Template from './Template';
 import TextInput from './TextInput';
 
-const Container = styled.div`
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-`;
-
 function App() {
   const [memeData, setMemeData] = useState('');
   const [template, setTemplate] = useState('');
@@ -45,8 +39,8 @@ function App() {
     '.png';
 
   return (
-    <Container>
-      <h1>meme generator</h1>
+    <div className="contentBox">
+      <h1>Meme Generator</h1>
       <Template template={template} setTemplate={setTemplate} setId={setId} />
 
       <AvailableMemes
@@ -55,17 +49,24 @@ function App() {
         setId={setId}
       />
 
-      <DisplayCustomMeme customMeme={customMeme} />
+      <div className="grid">
+        <DisplayCustomMeme customMeme={customMeme} className="meme" />
 
-      <TextInput
-        topText={topText}
-        setTopText={setTopText}
-        bottomText={bottomText}
-        setBottomText={setBottomText}
-      />
-
-      <Download customMeme={customMeme} />
-    </Container>
+        <div className="unit">
+          <TextInput
+            className="input"
+            topText={topText}
+            setTopText={setTopText}
+            bottomText={bottomText}
+            setBottomText={setBottomText}
+          />
+          <Download customMeme={customMeme} className="download" />
+          <p>
+            API: <a href="https://memegen.link/">Memegen.link</a>
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
 

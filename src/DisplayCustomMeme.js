@@ -4,8 +4,12 @@ const Div = styled.div`
   height: 50vh;
   width: auto;
   border: 4px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px;
   display: flex;
   justify-content: center;
+  margin-left: 10%;
+  background-color: #a382e5;
 `;
 const Img = styled.img`
   margin: 5vh;

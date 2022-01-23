@@ -1,4 +1,17 @@
+import styled from '@emotion/styled';
 import { saveAs } from 'file-saver';
+
+const Button = styled.button`
+  padding: 30px;
+  margin: 30px;
+  font-size: 30px;
+  border: 4px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 5px;
+  &:hover {
+    background-color: #efb46b;
+  }
+`;
 
 export default function Download({ customMeme }) {
   // use the file-saver library to download the meme
@@ -7,7 +20,7 @@ export default function Download({ customMeme }) {
   }
   return (
     <div>
-      <button onClick={downloadImage}>Download</button>
+      <Button onClick={downloadImage}>Download</Button>
     </div>
   );
 }
