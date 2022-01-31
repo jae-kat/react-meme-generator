@@ -1,3 +1,7 @@
+body {
+  background-color: #fcb0f7;
+}
+
 .contentBox {
   display: flex;
   flex-flow: column;
@@ -18,7 +22,7 @@
 
 h1 {
   text-transform: uppercase;
-  text-shadow: 4px 4px #f282d0;
+  text-shadow: 3px 3px #6e33c6;
 }
 
 p {
