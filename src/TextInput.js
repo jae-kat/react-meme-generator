@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { useRef } from 'react';
 
 const Fragment = styled.div`
   display: flex;
@@ -19,10 +20,12 @@ export default function TextInput({
   bottomText,
   setBottomText,
 }) {
+  const focusJumpToBottom = useRef();
+
   // if you are in the input field for the top text and you hit enter, the focus jumps to the bottom input field
-  function handleTopText(event) {
+  function handleFocusJump(event) {
     if (event.key === 'Enter') {
-      document.querySelector('.bottom-text').focus();
+      focusJumpToBottom.current.focus();
     }
   }
 
@@ -33,7 +36,7 @@ export default function TextInput({
         Top text{' '}
         <input
           onChange={(event) => setTopText(event.target.value)}
-          onKeyPress={handleTopText}
+          onKeyPress={handleFocusJump}
           value={topText}
         />
       </label>
@@ -42,7 +45,7 @@ export default function TextInput({
         <input
           onChange={(event) => setBottomText(event.target.value)}
           value={bottomText}
-          className="bottom-text"
+          ref={focusJumpToBottom}
         />
       </label>
     </Fragment>
