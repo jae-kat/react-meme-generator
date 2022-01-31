@@ -33,7 +33,7 @@ export default function AvailableMemes({ memeData, setMemeData, setId }) {
       const data = await fetchResponse.json();
       setMemeData(data);
     }
-    void getMemes();
+    getMemes().catch((error) => console.log(error));
   }, [setMemeData]);
 
   // store the relevant data in an array (the url to the memes, as well as their names and ids
