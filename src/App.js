@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AvailableMemes from './AvailableMemes';
 import DisplayCustomMeme from './DisplayCustomMeme';
 import Download from './Download';
@@ -37,16 +37,22 @@ function App() {
     (!bottomText ? '' : !topText ? '/_/' + bottomText : '/' + bottomText) +
     '.png';
 
+  // fetch the data from the API
+  useEffect(() => {
+    async function getMemes() {
+      const fetchResponse = await fetch('https://api.memegen.link/templates');
+      const data = await fetchResponse.json();
+      setMemeData(data);
+    }
+    getMemes().catch((error) => console.log(error));
+  }, [setMemeData]);
+
   return (
     <div className="contentBox">
       <h1>Meme Generator</h1>
       <Template template={template} setTemplate={setTemplate} setId={setId} />
 
-      <AvailableMemes
-        memeData={memeData}
-        setMemeData={setMemeData}
-        setId={setId}
-      />
+      <AvailableMemes memeData={memeData} setId={setId} />
 
       <div className="grid">
         <DisplayCustomMeme customMeme={customMeme} className="meme" />

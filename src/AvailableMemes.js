@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const Container = styled.div`
   width: 80vw;
@@ -21,20 +21,10 @@ const Button = styled.button`
   color: white;
 `;
 
-export default function AvailableMemes({ memeData, setMemeData, setId }) {
+export default function AvailableMemes({ memeData, setId }) {
   // these are needed for the 'back' and 'next' buttons
   const [indexHigh, setIndexHigh] = useState(6);
   const [indexLow, setIndexLow] = useState(0);
-
-  // fetch the data from the API
-  useEffect(() => {
-    async function getMemes() {
-      const fetchResponse = await fetch('https://api.memegen.link/templates');
-      const data = await fetchResponse.json();
-      setMemeData(data);
-    }
-    getMemes().catch((error) => console.log(error));
-  }, [setMemeData]);
 
   // store the relevant data in an array (the url to the memes, as well as their names and ids
   const memeObject = Object.values(memeData).map((item) => ({
