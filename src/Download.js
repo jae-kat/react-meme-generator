@@ -10,6 +10,7 @@ const Button = styled.button`
   box-shadow: 5px 5px;
   &:hover {
     background-color: #3327a3;
+    color: white;
   }
 `;
 
